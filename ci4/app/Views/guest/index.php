@@ -7,7 +7,10 @@
        <div class='main'>
         <h3><?= esc ($guest_item['fname']) ?></h3>
         <p><?= esc ($guest_item['email']) ?>
+        <p><?= esc ($guest_item['website']) ?>
         <p><?= esc ($guest_item['comment']) ?>
+        <p><?= esc ($guest_item['gender']) ?>
+
     </div>
     <?php endforeach ?>
 
