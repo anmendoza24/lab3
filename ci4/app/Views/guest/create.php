@@ -6,8 +6,8 @@
 <form action="create" method="post">
     <?= csrf_field() ?>
 
-    <label for="fname">Name</label>
-    <input type="input" name="fname" value="<?= set_value('fname') ?>">
+    <label for="name">Name</label>
+    <input type="input" name="name" value="<?= set_value('name') ?>">
     <br>
 
     <label for="email">Email</label>
