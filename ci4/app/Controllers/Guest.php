@@ -21,8 +21,6 @@ class Guest extends BaseController
             . view('templates/footer');
     }
 
-    
-    
     public function create()
     {
         helper('form');
@@ -30,8 +28,37 @@ class Guest extends BaseController
         if (! $this->request->is('post')) {
             // The form is not submitted, so returns the form.
             return view('templates/header', ['title' => 'Create a news item'])
-                . view('news/create')
+                . view('guest/create')
                 . view('templates/footer');
         }
+
+    $post = $this->request->getPost(['fname', 'email', 'website', 'comment', 'gender']);
+    // Checks whether the submitted data passed the validation rules.
+    if (! $this->validateData($post, [
+        'name' => 'required|max_length[255]|min_length[3]',
+        'email' => 'required|max_length[255]|min_length[3]',
+        'website' => 'required|max_length[255]|min_length[3]',			
+        'comment'  => 'required|max_length[5000]|min_length[10]',
+        'gender' => 'required|max_length[255]|min_length[3]',			
+    ])) {
+        // The validation fails, so returns the form.
+        return view('templates/header', ['title' => 'Add a guest entry'])
+            . view('guest/create')
+            . view('templates/footer');
     }
+
+    $model = model(GuestModel::class);
+
+    $model->save([
+        'name' => $post['name'],
+        'email'  => $post['email'],
+        'website'  => $post['website'],
+        'comment'  => $post['comment'],
+        'gender'  => $post['gender'],
+    ]);
+
+    return view('templates/header', ['title' => 'Add a Guest Entry'])
+        . view('guest/success')
+        . view('templates/footer');
+}
 }
