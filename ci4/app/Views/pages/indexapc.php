@@ -129,12 +129,9 @@ p.round {
   </a>
 
 </div>
-  <div style="margin-top:20px"></div>
-  <button onclick="this.innerHTML=Date()">The time is?</button>
-
+  
 <script src="myscript.js"></script>
   <button onclick="window.print()">Print this page</button>
-//testing Again
 
   <?php
 // define variables and set to empty values
